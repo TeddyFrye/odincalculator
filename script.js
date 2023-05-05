@@ -56,9 +56,46 @@ function operate(num1, operator,num2){
 //Making buttons do stuff
 const display = document.getElementById("display");
 const numbers = document.querySelectorAll(".number");
+const operators = document.querySelectorAll(".operator");
+const clearButton = document.querySelector(".clear");
+const equalsButton = document.querySelector(".equals");
+
+let num1 = null;
+let num2 = null;
+let operator = null;
 
 numbers.forEach((number) => {
   number.addEventListener("click", () => {
     display.textContent += number.textContent;
   });
+});
+
+operators.forEach((operatorButton) => {
+  operatorButton.addEventListener("click", () => {
+    if (num1 === null) {
+      num1 = Number(display.textContent);
+      operator = operatorButton.dataset.operator;
+      display.textContent = "";
+    } else {
+      num2 = Number(display.textContent);
+      const result = operate(operator, num1, num2);
+      display.textContent = result;
+      num1 = result;
+      operator = operatorButton.dataset.operator;
+      num2 = null;
+    }
+  });
+});
+
+equalsButton.addEventListener("click", () => {
+    num2 = parseFloat(display.textContent);
+    display.textContent = operate(operator,num1,num2);
+});
+
+
+clearButton.addEventListener("click", () => {
+  display.textContent = "";
+  num1 = null;
+  num2 = null;
+  operator = null;
 });
