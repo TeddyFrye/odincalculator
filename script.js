@@ -52,3 +52,13 @@ function operate(num1, operator,num2){
             return factorial(num1,num2);
     }
 }
+
+//Making buttons do stuff
+const display = document.getElementById("display");
+const numbers = document.querySelectorAll(".number");
+
+numbers.forEach((number) => {
+  number.addEventListener("click", () => {
+    display.textContent += number.textContent;
+  });
+});
