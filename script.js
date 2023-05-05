@@ -75,7 +75,7 @@ operators.forEach((operatorButton) => {
     if (num1 === null) {
       num1 = Number(display.textContent);
       operator = operatorButton.dataset.operator;
-      display.textContent = "";
+      display.textContent = num1;
     } else {
       num2 = Number(display.textContent);
       const result = operate(operator, num1, num2);
