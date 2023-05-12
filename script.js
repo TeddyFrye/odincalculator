@@ -21,6 +21,8 @@ function handleClick(event) {
     handleEquals();
   } else if (value === "C") {
     handleClear();
+  } else if (value === ".") { // Check for decimal button
+    handleDecimal();
   }
 }
 
@@ -35,6 +37,21 @@ function handleNumber(value) {
   }
 }
 
+// Add support for decimal point
+function handleDecimal() {
+  if (operator === "") {
+    if (!num1.includes(".")) { // Check if decimal point already exists
+      num1 += ".";
+      display.textContent = num1;
+    }
+  } else {
+    if (!num2.includes(".")) {
+      num2 += ".";
+      display.textContent = num2;
+    }
+  }
+}
+
 // Handle operator button click
 function handleOperator(value) {
   operator = value;
@@ -42,22 +59,22 @@ function handleOperator(value) {
 
 // Handle equals button click
 function handleEquals() {
-  const num1 = parseFloat(num1);
-  const num2 = parseFloat(num2);
+  const number1 = parseFloat(num1);
+  const number2 = parseFloat(num2);
   let result;
 
   switch (operator) {
     case "+":
-      result = num1 + num2;
+      result = number1 + number2;
       break;
     case "-":
-      result = num1 - num2;
+      result = number1 - number2;
       break;
     case "*":
-      result = num1 * num2;
+      result = number1 * number2;
       break;
     case "/":
-      result = num1 / num2;
+      result = number1 / number2;
       break;
     default:
       result = "";
@@ -68,6 +85,7 @@ function handleEquals() {
   num2 = "";
   operator = "";
 }
+
 
 // Handle clear button click
 function handleClear() {
