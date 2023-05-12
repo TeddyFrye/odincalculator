@@ -8,30 +8,46 @@
     border:darkblue 1px solid;
 
   }
-  #display {
+
+#display {
     height: 30px;
     margin-bottom: 10px;
     font-size: 20px;
+
     text-align: right;
     padding-right: 5px;
   }
+
 .button {
     width: 40px;
     height: 40px;
     margin: 5px;
     font-size: 20px;
-  }
+}
 
 .button.operator {
     background-color: #999;
     color: #fff;
   }
 
-  .button.clear {
+.button.clear {
     background-color: #f00;
     color: #fff;
   }
+
 #name{
 font-size: 20px;
 margin-left: 105px;
+}
+
+body{
+  background-image: url(https://static.independent.co.uk/s3fs-public/thumbnails/image/2017/10/27/09/matrix-code.jpg);
+}
+
+#name{
+  font-style:bold;
+  font-size: 25px;
+    -webkit-text-stroke: 1px darkgreen;
+    -webkit-text-fill-color: seagreen;
+
 }

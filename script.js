@@ -9,19 +9,37 @@ buttons.forEach(button => {
   button.addEventListener("click", handleClick);
 });
 
+// Add event listener for keydown events
+document.addEventListener('keydown', handleKeyDown);
+
 // Handle button click
 function handleClick(event) {
   const value = event.target.textContent;
+  handleInput(value);
+}
+
+// Handle keydown event
+function handleKeyDown(event) {
+  const key = event.key;
   
+  if (key === "Backspace") {
+    handleBackspace();
+  } else {
+    handleInput(key);
+  }
+}
+
+// Handle input from button click or keydown event
+function handleInput(value) {
   if (value >= "0" && value <= "9") {
     handleNumber(value);
   } else if (value === "+" || value === "-" || value === "*" || value === "/") {
     handleOperator(value);
-  } else if (value === "=") {
+  } else if (value === "=" || value === "Enter") {
     handleEquals();
-  } else if (value === "C") {
+  } else if (value === "c") {
     handleClear();
-  } else if (value === ".") { // Check for decimal button
+  } else if (value === ".") {
     handleDecimal();
   }
 }
@@ -40,7 +58,7 @@ function handleNumber(value) {
 // Add support for decimal point
 function handleDecimal() {
   if (operator === "") {
-    if (!num1.includes(".")) { // Check if decimal point already exists
+    if (!num1.includes(".")) {
       num1 += ".";
       display.textContent = num1;
     }
@@ -86,11 +104,21 @@ function handleEquals() {
   operator = "";
 }
 
-
 // Handle clear button click
 function handleClear() {
   num1 = "";
   num2 = "";
   operator = "";
   display.textContent = "";
+}
+
+// Handle backspace key
+function handleBackspace() {
+  if (operator === "") {
+    num1 = num1.slice(0, -1);
+    display.textContent = num1;
+  } else {
+    num2 = num2.slice(0, -1);
+    display.textContent = num2;
+  }
 }
